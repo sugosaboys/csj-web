@@ -70,10 +70,10 @@ console.log(data?.value);
                 <NuxtImg :src="`${Content.hoverImage2.url}`" :alt="Content.hoverImage2.name" class="transition-all duration-300 absolute inset-0 w-full h-[576px] object-cover opacity-0 group-hover:opacity-100"/>
             </span>
         </div>
-        <div v-if="Content.__component === 'text.description'">
+        <div v-if="Content.__component === 'text.description'" id="About">
             <h2 class="romanabt text-[24px] md:text-[32px] text-[#4B3E2A] text-center py-20 px-8 md:px-40">{{ Content.description }}</h2>
         </div>
-        <div v-if="Content.__component === 'package.package'">
+        <div v-if="Content.__component === 'package.package'" id="Packages">
             <h4 class="romanabt text-[24px] md:text-[32px] text-[#4B3E2A] text-center py-5">{{ Content.Title }}</h4>
             <span class="flex justify-center items-center px-8 md:px-0">
                 <p class="text-center text-[#4B3E2A] font-regular w-[544px]">{{ Content.subTitle }}</p>
@@ -137,7 +137,7 @@ console.log(data?.value);
             </main>
          </div>
         </div>
-        <div v-if="Content.__component === 'carousel.slider'">
+        <div v-if="Content.__component === 'carousel.slider'" id="Gallery">
             <main class="relative flex overflow-hidden w-full py-30">
                 <div class="flex items-center gap-10 animate-infinite-scroll">
                     <div class="flex items-center gap-10">
@@ -149,7 +149,7 @@ console.log(data?.value);
                 </div>
             </main>
         </div>
-        <div v-if="Content.__component === 'cards.featured'" class="px-30">
+        <div v-if="Content.__component === 'cards.featured'" class="px-30" id="Info">
             <h4 class="romanabt text-[#4B3E2A] text-[24px] md:text-[32px] text-center py-5">{{ Content.Title }}</h4>
             <p class="text-center text-[#4B3E2A] font-regular">{{ Content.description }}</p>
             <main class="flex flex-col md:flex-row justify-center items-center gap-5 py-10">

@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+*{
+    scroll-behavior: smooth;
+}
+
 .colorTester{
     background-color: #faf7f20d;
 }
