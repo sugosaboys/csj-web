@@ -57,17 +57,17 @@ console.log(data?.value);
     <!--content-->
     <section v-for="Content in ContentSections">
         <div v-if="Content.__component === 'hero.full-image'" class="relative w-full overflow-hidden group mt-8">
-            <NuxtImg :src="`http://localhost:1337${Content.image.url}`" :alt="Content.image.name" class="transition-all duration-300 w-full h-[576px] object-cover group-hover:opacity-0"/>
-            <NuxtImg :src="`http://localhost:1337${Content.hoverImage.url}`" :alt="Content.hoverImage.name" class="transition-all duration-300 absolute inset-0 w-full h-[576px] object-cover opacity-0 group-hover:opacity-100"/>
+            <NuxtImg :src="`${Content.image.url}`" :alt="Content.image.name" class="transition-all duration-300 w-full h-[576px] object-cover group-hover:opacity-0"/>
+            <NuxtImg :src="`${Content.hoverImage.url}`" :alt="Content.hoverImage.name" class="transition-all duration-300 absolute inset-0 w-full h-[576px] object-cover opacity-0 group-hover:opacity-100"/>
         </div>
         <div v-if="Content.__component === 'hero.flex-image'" class="md:flex justify-center items-center hidden">
             <span class="relative w-full overflow-hidden group">
-                <NuxtImg :src="`http://localhost:1337${Content.image1.url}`" :alt="Content.image1.name" class="transition-all duration-300 w-full h-[576px] object-cover group-hover:opacity-0"/>
-                <NuxtImg :src="`http://localhost:1337${Content.hoverImage1.url}`" :alt="Content.hoverImage1.name" class="transition-all duration-300 absolute inset-0 w-full h-[576px] object-cover opacity-0 group-hover:opacity-100"/>
+                <NuxtImg :src="`${Content.image1.url}`" :alt="Content.image1.name" class="transition-all duration-300 w-full h-[576px] object-cover group-hover:opacity-0"/>
+                <NuxtImg :src="`${Content.hoverImage1.url}`" :alt="Content.hoverImage1.name" class="transition-all duration-300 absolute inset-0 w-full h-[576px] object-cover opacity-0 group-hover:opacity-100"/>
             </span>
             <span class="relative w-full overflow-hidden group">
-                <NuxtImg :src="`http://localhost:1337${Content.image2.url}`" :alt="Content.image2.name" class="transition-all duration-300 w-full h-[576px] object-cover group-hover:opacity-0"/>
-                <NuxtImg :src="`http://localhost:1337${Content.hoverImage2.url}`" :alt="Content.hoverImage2.name" class="transition-all duration-300 absolute inset-0 w-full h-[576px] object-cover opacity-0 group-hover:opacity-100"/>
+                <NuxtImg :src="`${Content.image2.url}`" :alt="Content.image2.name" class="transition-all duration-300 w-full h-[576px] object-cover group-hover:opacity-0"/>
+                <NuxtImg :src="`${Content.hoverImage2.url}`" :alt="Content.hoverImage2.name" class="transition-all duration-300 absolute inset-0 w-full h-[576px] object-cover opacity-0 group-hover:opacity-100"/>
             </span>
         </div>
         <div v-if="Content.__component === 'text.description'">
@@ -97,7 +97,7 @@ console.log(data?.value);
                 <swiper-slide v-for="packages in Content.types" :key="packages.Title">
                     <article class="flex mt-10">
                         <main class="w-[544px] h-full">
-                            <NuxtImg :src="`http://localhost:1337${packages.image.url}`" :alt="packages.image.name" class="w-full md:w-[544px] h-[312px] md:h-[544px] object-cover"/>
+                            <NuxtImg :src="`${packages.image.url}`" :alt="packages.image.name" class="w-full md:w-[544px] h-[312px] md:h-[544px] object-cover"/>
                             <div class="flex flex-col p-2 gap-2">
                                 <h4 class="romanabt text-[#4B3E2A] text-[20px]">{{ packages.Title }}</h4>
                                 <li v-html="marked(packages.description)" class="prose prose-invert marker:text-[8px] text-[#4B3E2A]"></li>
@@ -125,7 +125,7 @@ console.log(data?.value);
                     <NuxtImg @click="showPopup = false" src="/icon/closeBtn.svg" class="w-[24px] cursor-pointer"/>
                 </div>
                 <div class="flex flex-col gap-5 pt-5 pb-5">
-                    <NuxtImg :src="`http://localhost:1337${selectedPackage.image.url}`" class="w-full h-[414px] object-cover"/>
+                    <NuxtImg :src="`${selectedPackage.image.url}`" class="w-full h-[414px] object-cover"/>
                     <span class="flex items-end gap-5">
                         <h3 class="romanabt text-[#4B3E2A] text-[32px]">{{ selectedPackage.Title }}</h3>
                         <h4 class="romanabt text-[#4B3E2A] text-[20px]">{{ selectedPackage.Price }}</h4>
@@ -141,10 +141,10 @@ console.log(data?.value);
             <main class="relative flex overflow-hidden w-full py-30">
                 <div class="flex items-center gap-10 animate-infinite-scroll">
                     <div class="flex items-center gap-10">
-                        <NuxtImg v-for="IMG in Content.image" :src="`http://localhost:1337${IMG.url}`" :alt="IMG.name" class="w-[312px] md:w-[544px] h-[390px] md:h-[680px] object-cover"/>
+                        <NuxtImg v-for="IMG in Content.image" :src="`${IMG.url}`" :alt="IMG.name" class="w-[312px] md:w-[544px] h-[390px] md:h-[680px] object-cover"/>
                     </div>
                      <div class="flex items-center gap-10">
-                        <NuxtImg aria-hidden="true" v-for="IMG in Content.image" :src="`http://localhost:1337${IMG.url}`" :alt="IMG.name" class="w-[312px] md:w-[544px] h-[390px] md:h-[680px] object-cover"/>
+                        <NuxtImg aria-hidden="true" v-for="IMG in Content.image" :src="`${IMG.url}`" :alt="IMG.name" class="w-[312px] md:w-[544px] h-[390px] md:h-[680px] object-cover"/>
                     </div>
                 </div>
             </main>
@@ -155,7 +155,7 @@ console.log(data?.value);
             <main class="flex flex-col md:flex-row justify-center items-center gap-5 py-10">
                 <div v-for="Cards in Content.allCards" class="bg-[#f0eeea] w-[271px] h-[271px] p-5">
                     <span class="flex justify-center items-center py-5">
-                        <NuxtImg :src="`http://localhost:1337${Cards.logo.url}`" :alt="Cards.logo.name" class="w-[20px] object-cover"/>
+                        <NuxtImg :src="`${Cards.logo.url}`" :alt="Cards.logo.name" class="w-[20px] object-cover"/>
                     </span>
                     <span class="flex flex-col justify-center items-center text-center gap-5">
                         <h5 class="romanabt text-[#4B3E2A] text-[20px]">{{ Cards.Title }}</h5>
@@ -166,13 +166,13 @@ console.log(data?.value);
         </div>
     </section>
     <footer class="relative">
-        <NuxtImg :src="`http://localhost:1337${footerSection?.BackgroundImage.url}`" class="w-full h-[500px] md:h-[420px] object-cover brightness-80"/>
+        <NuxtImg :src="`${footerSection?.BackgroundImage.url}`" class="w-full h-[500px] md:h-[420px] object-cover brightness-80"/>
         <div class="absolute top-16 md:top-30 flex justify-start items-center px-8 md:px-30 z-10">
             <div class="flex justify-center items-center gap-5">
                 <span v-for="socialmedia in Socialmedia">
                     <a :href="socialmedia.link">
                         <span class="bg-[#faf7f20d] p-3 w-[46px] h-[46px] rounded-full overflow-hidden bg-[#faf7f20d] flex items-center justify-center">
-                            <NuxtImg :src="`http://localhost:1337${socialmedia.image.url}`" :alt="socialmedia.image.name" class="w-full h-full object-contain"/>
+                            <NuxtImg :src="`${socialmedia.image.url}`" :alt="socialmedia.image.name" class="w-full h-full object-contain"/>
                         </span>
                     </a>
                 </span>
