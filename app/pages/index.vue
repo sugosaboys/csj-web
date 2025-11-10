@@ -45,13 +45,13 @@ console.log(data?.value);
     <header class="pt-8">
         <span v-for="heading in data" class="text-[#4B3E2A]">
             <h4 class="romanabt text-center">{{ heading.heading }}</h4>
-            <h1 class="romanabt text-center text-[48px]">{{ heading.Title }}</h1>
+            <h1 class="romanabt text-center text-[24px] md:text-[48px]">{{ heading.Title }}</h1>
         </span>
     </header>
-    <nav class="bg-white sticky top-0 z-50 py-5">
-        <ul class="flex justify-center items-center gap-8 romanabt">
-            <li v-for="navbar in NavBar"><a :href="navbar.link" class="text-[#4B3E2A] hover:underline">{{ navbar.label }}</a></li>
-            <li><a :href="CTA?.link" class="transition-all duration-300 border-1 border-[#4B3E2A] p-2 text-[#4B3E2A] hover:text-white hover:bg-[#4B3E2A]">{{ CTA?.label }}</a></li>
+    <nav class="bg-white fixed md:sticky bottom-0 md:top-0 z-50 py-2 md:py-5 w-full">
+        <ul class="flex justify-center items-center md:gap-8 romanabt">
+            <li v-for="navbar in NavBar"><a :href="navbar.link" class="hidden md:block text-[#4B3E2A] hover:underline">{{ navbar.label }}</a></li>
+            <li class="flex md:block"><a :href="CTA?.link" class="transition-all duration-300 w-[300px] border-1 border-[#4B3E2A] p-2 text-[#4B3E2A] text-center hover:text-white hover:bg-[#4B3E2A]">{{ CTA?.label }}</a></li>
         </ul>   
     </nav>
     <!--content-->
@@ -60,7 +60,7 @@ console.log(data?.value);
             <NuxtImg :src="`http://localhost:1337${Content.image.url}`" :alt="Content.image.name" class="transition-all duration-300 w-full h-[576px] object-cover group-hover:opacity-0"/>
             <NuxtImg :src="`http://localhost:1337${Content.hoverImage.url}`" :alt="Content.hoverImage.name" class="transition-all duration-300 absolute inset-0 w-full h-[576px] object-cover opacity-0 group-hover:opacity-100"/>
         </div>
-        <div v-if="Content.__component === 'hero.flex-image'" class="flex justify-center items-center">
+        <div v-if="Content.__component === 'hero.flex-image'" class="md:flex justify-center items-center hidden">
             <span class="relative w-full overflow-hidden group">
                 <NuxtImg :src="`http://localhost:1337${Content.image1.url}`" :alt="Content.image1.name" class="transition-all duration-300 w-full h-[576px] object-cover group-hover:opacity-0"/>
                 <NuxtImg :src="`http://localhost:1337${Content.hoverImage1.url}`" :alt="Content.hoverImage1.name" class="transition-all duration-300 absolute inset-0 w-full h-[576px] object-cover opacity-0 group-hover:opacity-100"/>
@@ -71,23 +71,33 @@ console.log(data?.value);
             </span>
         </div>
         <div v-if="Content.__component === 'text.description'">
-            <h2 class="romanabt text-[32px] text-[#4B3E2A] text-center py-20 px-40">{{ Content.description }}</h2>
+            <h2 class="romanabt text-[24px] md:text-[32px] text-[#4B3E2A] text-center py-20 px-8 md:px-40">{{ Content.description }}</h2>
         </div>
         <div v-if="Content.__component === 'package.package'">
-            <h4 class="romanabt text-[32px] text-[#4B3E2A] text-center py-5">{{ Content.Title }}</h4>
-            <span class="flex justify-center items-center">
+            <h4 class="romanabt text-[24px] md:text-[32px] text-[#4B3E2A] text-center py-5">{{ Content.Title }}</h4>
+            <span class="flex justify-center items-center px-8 md:px-0">
                 <p class="text-center text-[#4B3E2A] font-regular w-[544px]">{{ Content.subTitle }}</p>
             </span>
         <ClientOnly>
             <swiper-container 
             ref="containerRef" 
-            :slides-per-view="3" 
             :space-between="30"
-            :centered-slides="true">
+            :centered-slides="true"
+            :breakpoints="{
+                400:{
+                    slidesPerView:1,
+                },
+                768:{
+                    slidesPerView:2,
+                },
+                1024:{
+                    slidesPerView:3,
+                }
+            }">
                 <swiper-slide v-for="packages in Content.types" :key="packages.Title">
                     <article class="flex mt-10">
                         <main class="w-[544px] h-full">
-                            <NuxtImg :src="`http://localhost:1337${packages.image.url}`" :alt="packages.image.name" class="w-[544px] h-[544px] object-cover"/>
+                            <NuxtImg :src="`http://localhost:1337${packages.image.url}`" :alt="packages.image.name" class="w-full md:w-[544px] h-[312px] md:h-[544px] object-cover"/>
                             <div class="flex flex-col p-2 gap-2">
                                 <h4 class="romanabt text-[#4B3E2A] text-[20px]">{{ packages.Title }}</h4>
                                 <li v-html="marked(packages.description)" class="prose prose-invert marker:text-[8px] text-[#4B3E2A]"></li>
@@ -131,18 +141,18 @@ console.log(data?.value);
             <main class="relative flex overflow-hidden w-full py-30">
                 <div class="flex items-center gap-10 animate-infinite-scroll">
                     <div class="flex items-center gap-10">
-                        <NuxtImg v-for="IMG in Content.image" :src="`http://localhost:1337${IMG.url}`" :alt="IMG.name" class="w-[544px] h-[680px] object-cover"/>
+                        <NuxtImg v-for="IMG in Content.image" :src="`http://localhost:1337${IMG.url}`" :alt="IMG.name" class="w-[312px] md:w-[544px] h-[390px] md:h-[680px] object-cover"/>
                     </div>
                      <div class="flex items-center gap-10">
-                        <NuxtImg aria-hidden="true" v-for="IMG in Content.image" :src="`http://localhost:1337${IMG.url}`" :alt="IMG.name" class="w-[544px] h-[680px] object-cover"/>
+                        <NuxtImg aria-hidden="true" v-for="IMG in Content.image" :src="`http://localhost:1337${IMG.url}`" :alt="IMG.name" class="w-[312px] md:w-[544px] h-[390px] md:h-[680px] object-cover"/>
                     </div>
                 </div>
             </main>
         </div>
         <div v-if="Content.__component === 'cards.featured'" class="px-30">
-            <h4 class="romanabt text-[#4B3E2A] text-[32px] text-center py-5">{{ Content.Title }}</h4>
+            <h4 class="romanabt text-[#4B3E2A] text-[24px] md:text-[32px] text-center py-5">{{ Content.Title }}</h4>
             <p class="text-center text-[#4B3E2A] font-regular">{{ Content.description }}</p>
-            <main class="flex justify-center items-center gap-5 py-10">
+            <main class="flex flex-col md:flex-row justify-center items-center gap-5 py-10">
                 <div v-for="Cards in Content.allCards" class="bg-[#f0eeea] w-[271px] h-[271px] p-5">
                     <span class="flex justify-center items-center py-5">
                         <NuxtImg :src="`http://localhost:1337${Cards.logo.url}`" :alt="Cards.logo.name" class="w-[20px] object-cover"/>
@@ -156,8 +166,8 @@ console.log(data?.value);
         </div>
     </section>
     <footer class="relative">
-        <NuxtImg :src="`http://localhost:1337${footerSection?.BackgroundImage.url}`" class="w-full h-[420px] object-cover brightness-80"/>
-        <div class="absolute top-30 flex justify-start items-center px-30 z-10">
+        <NuxtImg :src="`http://localhost:1337${footerSection?.BackgroundImage.url}`" class="w-full h-[500px] md:h-[420px] object-cover brightness-80"/>
+        <div class="absolute top-16 md:top-30 flex justify-start items-center px-8 md:px-30 z-10">
             <div class="flex justify-center items-center gap-5">
                 <span v-for="socialmedia in Socialmedia">
                     <a :href="socialmedia.link">
@@ -168,9 +178,9 @@ console.log(data?.value);
                 </span>
             </div>
         </div>
-        <div class="absolute inset-0 flex justify-between items-center px-30">
-            <h4 class="romanabt text-[48px] text-white">{{ footerSection?.Title }}</h4>
-            <div>
+        <div class="absolute inset-0 flex flex-col md:flex-row justify-center md:justify-between items-start md:items-center px-8 md:px-30">
+            <h4 class="romanabt text-[24px] md:text-[48px] text-white">{{ footerSection?.Title }}</h4>
+            <div class="py-5 md:py-0">
                  <nav class="flex justify-center items-start gap-30">
                     <ul class="flex flex-col justify-center gap-2 romanabt">
                         <li class="text-white text-[20px]">Menu</li>
@@ -183,7 +193,7 @@ console.log(data?.value);
                 </nav>
             </div>
         </div>
-        <div class="absolute flex flex-col justify-center items-center px-30 bottom-10 w-full">
+        <div class="absolute flex flex-col justify-center items-center px-8 md:px-30 bottom-10 w-full">
             <span class="border-1 border-white w-full"></span>
             <p class="romanabt text-white text-center mt-5">Copyright © 2025, Canggu Silver Jewelry Class</p>
         </div>
