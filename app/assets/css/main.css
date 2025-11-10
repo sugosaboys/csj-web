@@ -1,0 +1,47 @@
+@import "tailwindcss";
+
+.colorTester{
+    background-color: #faf7f20d;
+}
+
+@font-face {
+    font-family: 'romanabt';
+    src: url('../font/romanabt_roman.otf');
+}
+
+.romanabt{
+    font-family: 'romanabt';
+}
+
+@keyframes infiniteScroll {
+    0%{
+        transform: translateX(0);
+    }
+    100%{
+        transform: translateX(-50%);
+    }
+}
+
+.animate-infinite-scroll{
+    display: flex;
+    width: max-content;
+    animation: infiniteScroll 20s linear infinite;
+}
+
+.animate-infinite-scroll img {
+  flex-shrink: 0;
+}
+
+.prose h4{
+    font-family: 'romanabt';
+}
+
+.prose ul {
+  list-style-type: disc !important;
+  margin-left: 28px;
+}
+
+.hide-scrollbar::-webkit-scrollbar{
+    visibility: hidden;
+    width: 0;
+}
