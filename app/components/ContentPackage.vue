@@ -4,7 +4,7 @@
       <NuxtImg
         :src="`${packages.image.url}`"
         :alt="packages.image.name"
-        class="w-[400px] md:w-[544px] h-[312px] md:h-[544px] object-cover"
+        class="w-[400px] md:w-[544px] h-[312px] md:h-[500px] object-cover"
       />
       <div class="flex flex-col p-2 gap-2">
         <h4 class="romanabt text-[#4B3E2A] text-[20px]">

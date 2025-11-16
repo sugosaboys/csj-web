@@ -102,7 +102,7 @@ onMounted (()=>{
                     slidesPerView:3,
                 }
             }" class="hidden md:block">
-                <swiper-slide v-for="packages in Content.types" :key="Content.id">
+                <swiper-slide v-for="packages in Content.types" :key="packages.id">
                     <ContentPackage :packages="packages" @click="openPopup"/>
                 </swiper-slide>
             </swiper-container>
