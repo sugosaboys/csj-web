@@ -1,17 +1,21 @@
 export interface cta{
+     id:number;
     label: string;
     link: string;
 }
 export interface navbar{
+     id:number;
     label: string;
     link: string;
 }
 export interface Navigation{
+     id:number;
     cta: cta;
     navbar: navbar[];
 }
 
 export interface fullImage{
+     id:number;
     __component: "hero.full-image";
     image:{
         url:string;
@@ -24,6 +28,7 @@ export interface fullImage{
 }
 
 export interface flexImage{
+     id:number;
     __component: "hero.flex-image";
     image1:{
         url:string;
@@ -44,11 +49,13 @@ export interface flexImage{
 }
 
 export interface description{
+     id:number;
     __component:"text.description";
     description:string;
 }
 
 export interface types{
+     id:number;
     Title:string;
     description:string;
     image:{
@@ -65,6 +72,7 @@ export interface types{
 }
 
 export interface packages{
+     id:number;
     __component:"package.package";   
     Title:string;
     subTitle:string;
@@ -72,6 +80,7 @@ export interface packages{
 }
 
 export interface allcard{
+     id:number;
     Title:string;
     description:string;
     logo:{
@@ -81,6 +90,7 @@ export interface allcard{
 }
 
 export interface features{
+     id:number;
    __component: "cards.featured";
     Title:string;
     description:string;
@@ -88,6 +98,7 @@ export interface features{
 }
 
 export interface Slider{
+     id:number;
     __component:"carousel.slider";
     image:{
         url:string;
@@ -96,11 +107,13 @@ export interface Slider{
 }
 
 export interface customerCare{
+    id:number;
     label:string;
     link:string;
 }
 
 export interface socialmedia{
+    id:number;
     image:{
         url:string;
         name:string;
@@ -109,6 +122,7 @@ export interface socialmedia{
 }
 
 export interface Footer {
+    id:number;
     BackgroundImage:{
         url:string
         name:string
@@ -122,6 +136,7 @@ export type contentSection = fullImage | flexImage | description | Slider | pack
 
 export interface homepage{
     data:{
+        id:number;
         heading: string;
         Title: string;
         navigation: Navigation;
