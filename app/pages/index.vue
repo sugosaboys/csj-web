@@ -114,24 +114,32 @@ onMounted (()=>{
             </div>
         </div>
         <!-- popup -->
-         <div v-if="showPopup" class="fixed inset-0 bg-black/50 flex justify-center items-center z-50">
-            <main class="bg-white w-[800px] h-[632px] overflow-y-auto px-8 hide-scrollbar">
-                <div class="sticky top-0 flex justify-between items-center bg-white w-full py-2">
-                    <h3 class="romanabt text-[#4B3E2A] text-[20px]">{{ selectedPackage.Title }}</h3>
-                    <NuxtImg @click="showPopup = false" src="/icon/closeBtn.svg" class="w-[24px] cursor-pointer"/>
-                </div>
-                <div class="flex flex-col gap-5 pt-5 pb-5">
-                    <NuxtImg :src="`${selectedPackage.image.url}`" class="w-full h-[176px] md:h-[414px] object-cover"/>
-                    <span class="block md:flex items-end gap-5">
-                        <h3 class="romanabt text-[#4B3E2A] text-[32px]">{{ selectedPackage.Title }}</h3>
-                        <h4 class="romanabt text-[#4B3E2A] text-[20px]">{{ selectedPackage.Price }}</h4>
-                    </span>
-                    <p class="text-[#4B3E2A] maisonneue">{{ selectedPackage.Brief }}</p>
-                    <a :href="selectedPackage.cta.link" class="transition-all duration-300 border-1 border-[#4B3E2A] p-2 text-center romanabt text-[#4B3E2A] hover:text-white hover:bg-[#4B3E2A] w-[100px]">{{ selectedPackage.cta.label }}</a>
-                    <p v-html="marked(selectedPackage.information)" class="prose prose-invert marker:text-[8px] text-[#4B3E2A]"></p>
-                </div>
-            </main>
-         </div>
+         <Transition
+         enter-active-class="transition-all md:transition-opacity duration-300 ease-out"
+         enter-from-class="translate-y-full md:opacity-0"
+         enter-to-class="translate-y-0 md:opacity-100"
+         leave-active-class="transition-all md:transition-opacity duration-300 ease-in"
+         leave-from-class="translate-y-0 md:opacity-100"
+         leave-to-class="translate-y-full md:opacity-0">
+             <div v-if="showPopup" class="fixed inset-0 bg-black/50 flex justify-center items-end md:items-center z-50">
+                <main class="bg-white w-[800px] h-[632px] overflow-y-auto px-8 hide-scrollbar">
+                    <div class="sticky top-0 flex justify-between items-center bg-white w-full py-2">
+                        <h3 class="romanabt text-[#4B3E2A] text-[20px]">{{ selectedPackage.Title }}</h3>
+                        <NuxtImg @click="showPopup = false" src="/icon/closeBtn.svg" class="w-[24px] cursor-pointer"/>
+                    </div>
+                    <div class="flex flex-col gap-5 pt-5 pb-5">
+                        <NuxtImg :src="`${selectedPackage.image.url}`" class="w-full h-[176px] md:h-[414px] object-cover"/>
+                        <span class="block md:flex items-end gap-5">
+                            <h3 class="romanabt text-[#4B3E2A] text-[32px]">{{ selectedPackage.Title }}</h3>
+                            <h4 class="romanabt text-[#4B3E2A] text-[20px]">{{ selectedPackage.Price }}</h4>
+                        </span>
+                        <p class="text-[#4B3E2A] maisonneue">{{ selectedPackage.Brief }}</p>
+                        <a :href="selectedPackage.cta.link" class="transition-all duration-300 border-1 border-[#4B3E2A] p-2 text-center romanabt text-[#4B3E2A] hover:text-white hover:bg-[#4B3E2A] w-[100px]">{{ selectedPackage.cta.label }}</a>
+                        <p v-html="marked(selectedPackage.information)" class="prose prose-invert marker:text-[8px] text-[#4B3E2A]"></p>
+                    </div>
+                </main>
+             </div>
+         </Transition>
         </div>
         <div v-if="Content.__component === 'carousel.slider'" id="Gallery">
             <main class="relative flex overflow-hidden w-full py-30">
@@ -191,7 +199,7 @@ onMounted (()=>{
         </div>
         <div class="absolute flex flex-col justify-center items-center px-8 md:px-30 bottom-10 w-full">
             <span class="border-1 border-white w-full"></span>
-            <p class="romanabt text-white text-center mt-5">Copyright © 2025, Canggu Silver Jewelry Class</p>
+            <p class="romanabt text-white text-center mt-5 pb-10 md:pb-0">Copyright © 2025, Canggu Silver Jewelry Class</p>
         </div>
     </footer>
 </template>
