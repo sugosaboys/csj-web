@@ -1,12 +1,12 @@
 <template>
   <article class="flex mt-10">
-    <main class="w-full md:w-[544px] h-full">
+    <main class="w-full md:w-[352px] h-full">
       <NuxtImg
         :src="`${packages.image.url}`"
         :alt="packages.image.name"
-        class="w-[400px] md:w-[544px] h-[312px] md:h-[500px] object-cover"
+        class="w-[400px] md:w-[352px] h-[312px] md:h-[352px] object-cover"
       />
-      <div class="flex flex-col p-2 gap-2">
+      <div class="bg-[#ccab780d] flex flex-col p-2 gap-2">
         <h4 class="romanabt text-[#4B3E2A] text-[20px]">
           {{ packages.Title }}
         </h4>

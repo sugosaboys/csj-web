@@ -85,8 +85,8 @@ onMounted (()=>{
             <span class="flex justify-center items-center px-8 md:px-0">
                 <p class="text-center text-[#4B3E2A] maisonneue w-[544px]">{{ Content.subTitle }}</p>
             </span>
-        <!--Desktop-->
-        <ClientOnly>
+        <!--Desktop Swiper option-->
+        <!-- <ClientOnly>
             <swiper-container 
             ref="containerRef" 
             :space-between="30"
@@ -106,13 +106,15 @@ onMounted (()=>{
                     <ContentPackage :packages="packages" @click="openPopup"/>
                 </swiper-slide>
             </swiper-container>
-        </ClientOnly>
-        <!--Mobile-->
-        <div class="flex flex-col justify-center items-center block md:hidden px-8">
-            <div v-for="packages in Content.types" :key="Content.id">
-                <ContentPackage :packages="packages" @click="openPopup"/>
+        </ClientOnly> -->
+        <!--Mobile and Desktop option 2-->
+        <main class="flex justify-center items-center">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-content-center items-start gap-8 px-8 md:px-20 lg:px-30">
+                <div v-for="packages in Content.types" :key="Content.id">
+                    <ContentPackage :packages="packages" @click="openPopup"/>
+                </div>
             </div>
-        </div>
+        </main>
         <!-- popup -->
          <Transition
          enter-active-class="transition-all md:transition-opacity duration-300 ease-out"
@@ -199,7 +201,7 @@ onMounted (()=>{
         </div>
         <div class="absolute flex flex-col justify-center items-center px-8 md:px-30 bottom-10 w-full">
             <span class="border-1 border-white w-full"></span>
-            <p class="romanabt text-white text-center mt-5 pb-10 md:pb-0">Copyright © 2025, Canggu Silver Jewelry Class</p>
+            <p class="romanabt text-white text-center mt-5 pb-10 md:pb-0">Copyright © 2025, Silver Space Tegallalang</p>
         </div>
     </footer>
 </template>
