@@ -6,7 +6,7 @@
         :alt="packages.image.name"
         class="w-[400px] md:w-[352px] h-[312px] md:h-[352px] object-cover"
       />
-      <div class="bg-[#ccab780d] flex flex-col p-2 gap-2 flex-1">
+      <div class="bg-[#ccab780d] flex flex-col py-5 px-5 gap-2 flex-1">
         <h4 class="romanabt text-[#4B3E2A] text-[20px]">
           {{ packages.Title }}
         </h4>
