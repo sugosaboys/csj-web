@@ -1,12 +1,12 @@
 <template>
-  <article class="flex mt-10">
-    <main class="w-full md:w-[352px] h-full">
+  <article class="flex flex-1 mt-10">
+    <main class="w-full md:w-[352px] flex flex-col">
       <NuxtImg
         :src="`${packages.image.url}`"
         :alt="packages.image.name"
         class="w-[400px] md:w-[352px] h-[312px] md:h-[352px] object-cover"
       />
-      <div class="bg-[#ccab780d] flex flex-col p-2 gap-2">
+      <div class="bg-[#ccab780d] flex flex-col p-2 gap-2 flex-1">
         <h4 class="romanabt text-[#4B3E2A] text-[20px]">
           {{ packages.Title }}
         </h4>
@@ -15,7 +15,7 @@
           class="prose prose-invert marker:text-[8px] maisonneue text-[#4B3E2A]"
         ></div>
         <p class="romanabt text-[#4B3E2A]">{{ packages.Price }}</p>
-        <span class="flex items-center gap-5 romanabt">
+        <span class="flex items-center gap-5 romanabt mt-auto">
           <a
             :href="packages.cta.link"
             class="transition-all duration-300 border-1 border-[#4B3E2A] p-2 text-[#4B3E2A] hover:text-white hover:bg-[#4B3E2A]"

@@ -109,8 +109,8 @@ onMounted (()=>{
         </ClientOnly> -->
         <!--Mobile and Desktop option 2-->
         <main class="flex justify-center items-center">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-content-center items-start gap-8 px-8 md:px-20 lg:px-30">
-                <div v-for="packages in Content.types" :key="Content.id">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-content-center gap-8 px-8 md:px-20 lg:px-30">
+                <div v-for="packages in Content.types" :key="Content.id" class="flex">
                     <ContentPackage :packages="packages" @click="openPopup"/>
                 </div>
             </div>
