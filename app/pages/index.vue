@@ -24,6 +24,7 @@ const { data } = await useFetch<homepage>(`${FetchingData}/api/homepage`,{
     'populate[Footer][populate][SocialMedia][populate][image][fields]': 'url,name',
     'populate[Footer][populate][CustomerCare][fields]': 'label,link',
     'populate[Footer][populate][BackgroundImage][fields]': 'url,name',
+    'populate[seo][populate][MetaImage][fields]':'url,name'
     }
 });
 
@@ -42,10 +43,18 @@ function openPopup(pkg:any){
     showPopup.value = true
 }
 
-onMounted (()=>{
-
+useSeoMeta({
+    title: () => data.value?.data.seo.MetaTitle,
+    description: () => data.value?.data.seo.MetaDescription,
+    ogTitle: () => data.value?.data.seo.MetaTitle,
+    ogDescription: () => data.value?.data.seo.MetaDescription,
+    ogImage: () => data.value?.data.seo.MetaImage.url,
+    twitterImage:()=> data.value?.data.seo.MetaImage.url,
 });
 
+useHead({link:[
+    {rel:'icon', type:'image/png', href:data.value?.data.seo.MetaImage.url}
+]})
 </script>
 
 

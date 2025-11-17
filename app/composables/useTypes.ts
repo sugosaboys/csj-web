@@ -134,6 +134,15 @@ export interface Footer {
 
 export type contentSection = fullImage | flexImage | description | Slider | packages | features;
 
+export interface seo{
+    MetaImage:{
+        url:string;
+        name:string;
+    }
+    MetaTitle:string;
+    MetaDescription:string;
+}
+
 export interface homepage{
     data:{
         id:number;
@@ -142,5 +151,6 @@ export interface homepage{
         navigation: Navigation;
         content: contentSection[];
         Footer:Footer;
+        seo:seo;
     }
 }
