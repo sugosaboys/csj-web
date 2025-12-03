@@ -52,9 +52,13 @@ useSeoMeta({
     twitterImage:()=> data.value?.data.seo.MetaImage.url,
 });
 
-useHead({link:[
-    {rel:'icon', type:'image/png', href:data.value?.data.seo.MetaImage.url}
-]})
+useHead({
+    meta:[
+        {name:'viewport', content:'width=device-width, initial-scale=1' },
+        {name: 'google-site-verification', content:'MebKa6o1sFc8B7bWhv1GepY4Cv02sbj1HHlq0gvURtA'}
+    ],
+    link:[{rel:'icon', type:'image/png', href:data.value?.data.seo.MetaImage.url}]
+});
 </script>
 
 
