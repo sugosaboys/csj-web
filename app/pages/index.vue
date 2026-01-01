@@ -3,31 +3,41 @@ import { marked } from 'marked'
 import type { homepage } from '~/composables/useTypes';
 
 const FetchingData = useRuntimeConfig().public.apiUrl;
-const { data } = await useFetch<homepage>(`${FetchingData}/api/homepage`,{
-    server:true,
-    lazy:false,
-    key:'homepage',
-    query:{
-    'populate[navigation][populate][navbar][fields]': 'label,link',
-    'populate[navigation][populate][cta][fields]': 'label,link',
-    'populate[content][on][hero.full-image][populate][image][fields]': 'url,name',
-    'populate[content][on][hero.full-image][populate][hoverImage][fields]': 'url,name',
-    'populate[content][on][hero.flex-image][populate][image1][fields]': 'url,name',
-    'populate[content][on][hero.flex-image][populate][image2][fields]': 'url,name',
-    'populate[content][on][hero.flex-image][populate][hoverImage1][fields]': 'url,name',
-    'populate[content][on][hero.flex-image][populate][hoverImage2][fields]': 'url,name',
-    'populate[content][on][text.description][fields]': 'description',
-    'populate[content][on][carousel.slider][populate][image][fields]': 'url,name',
-    'populate[content][on][package.package][populate][types][populate][image][fields]': 'url,name', 
-    'populate[content][on][package.package][populate][types][populate][cta][fields]': 'label,link', 
-    'populate[content][on][cards.featured][populate][allCards][populate][logo][fields]': 'url,name', 
-    'populate[Footer][populate][SocialMedia][populate][image][fields]': 'url,name',
-    'populate[Footer][populate][CustomerCare][fields]': 'label,link',
-    'populate[Footer][populate][BackgroundImage][fields]': 'url,name',
-    'populate[seo][populate][MetaImage][fields]':'url,name'
+// NOTE: TS warning ignored, data is guaranteed by SSR
+const { data } = await useAsyncData<homepage>(
+  'homepage',
+  () => $fetch(`${FetchingData}/api/homepage`, {
+    query: {
+      'populate[navigation][populate][navbar][fields]': 'label,link',
+      'populate[navigation][populate][cta][fields]': 'label,link',
+      'populate[content][on][hero.full-image][populate][image][fields]': 'url,name',
+      'populate[content][on][hero.full-image][populate][hoverImage][fields]': 'url,name',
+      'populate[content][on][hero.flex-image][populate][image1][fields]': 'url,name',
+      'populate[content][on][hero.flex-image][populate][image2][fields]': 'url,name',
+      'populate[content][on][hero.flex-image][populate][hoverImage1][fields]': 'url,name',
+      'populate[content][on][hero.flex-image][populate][hoverImage2][fields]': 'url,name',
+      'populate[content][on][text.description][fields]': 'description',
+      'populate[content][on][carousel.slider][populate][image][fields]': 'url,name',
+      'populate[content][on][package.package][populate][types][populate][image][fields]': 'url,name',
+      'populate[content][on][package.package][populate][types][populate][cta][fields]': 'label,link',
+      'populate[content][on][cards.featured][populate][allCards][populate][logo][fields]': 'url,name',
+      'populate[Footer][populate][SocialMedia][populate][image][fields]': 'url,name',
+      'populate[Footer][populate][CustomerCare][fields]': 'label,link',
+      'populate[Footer][populate][BackgroundImage][fields]': 'url,name',
+      'populate[seo][populate][MetaImage][fields]': 'url,name'
     }
-});
+  }),
+  {
+    server: true,
+    lazy: false,
+    staleTime: 1000 * 60 * 5, // cache 5 menit
+    watch: false,
+    deep: false,
+    default: () => null
+  }
+)
 
+// NOTE: TS warning ignored, data is guaranteed by SSR
 const NavBar = computed(()=> data.value?.data.navigation.navbar);
 const Customercare = computed(()=> data.value?.data.Footer.CustomerCare);
 const Socialmedia = computed(()=> data.value?.data.Footer.SocialMedia);
@@ -42,7 +52,7 @@ function openPopup(pkg:any){
     selectedPackage.value = pkg;
     showPopup.value = true
 }
-
+// NOTE: TS warning ignored, data is guaranteed by SSR
 useSeoMeta({
     title: () => data.value?.data.seo.MetaTitle,
     description: () => data.value?.data.seo.MetaDescription,
@@ -57,13 +67,14 @@ useHead({
         {name:'viewport', content:'width=device-width, initial-scale=1' },
         {name: 'google-site-verification', content:'MebKa6o1sFc8B7bWhv1GepY4Cv02sbj1HHlq0gvURtA'}
     ],
-    link:[{rel:'icon', type:'image/png', href:data.value?.data.seo.MetaImage.url}]
+    link:[{rel:'icon', type:'image/png', href:'/silverspace-tegallalang-logo.png'}]
 });
 </script>
 
 
 <template>
     <!--Header-->
+    <!-- NOTE: TS warning ignored, data is guaranteed by SSR -->
     <Header :data="data?.data"/>
     <Navbar :NavBar="NavBar" :CTA="CTA"/>
     <!--content-->
